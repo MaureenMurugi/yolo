@@ -5,7 +5,7 @@ services:
     build: ./client
     container_name: react-cloth
     ports:
-      -"3000:3000"
+      - "3000:3000"
     stdin_open: true
     tty: true
     depends_on:
@@ -17,7 +17,7 @@ services:
     build: ./backend
     container_name: node-api
     ports:
-      -"5000:5000"
+      - "5000:5000"
     depends_on:
       - database
     networks:
@@ -25,10 +25,10 @@ services:
 
   database:
     image: mongo
-    container_name: mondo-db
+    container_name: mongo-db
     restart: always
     ports:
-      -"27017:27017"
+      - "27017:27017"
     volumes:
       - /DevOps/mongo-backup:/data/db
     networks:

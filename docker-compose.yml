@@ -3,6 +3,7 @@ version: '3'
 services:
   client:
     build: ./client
+    # image: murugi/ip-client:1.0.0
     container_name: react-cloth
     ports:
       - "3000:3000"
@@ -14,7 +15,8 @@ services:
       - mern-network
 
   backend:
-    build: ./backend
+    # build: ./backend
+    image: murugi/ip-backend:1.0.0
     container_name: node-api
     ports:
       - "5000:5000"

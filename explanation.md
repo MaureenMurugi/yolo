@@ -26,11 +26,11 @@
 > I trace the bugs and their solution with git commits. 
 > To ensure successful running, I regularly test my Docker Compose setup on local environments before deploying it to production.
 > The major bug was running the package.json to pick a lower version of the node module, to resolve this I created a new image and adjusted the dockerfile to run the package.json adding commands like; 
->COPY package*.json ./
+> **COPY package*.json ./**
 
-> RUN npm ci
+> **RUN npm ci**
 
-> RUN npm install -g npm@16.0.0
+> **RUN npm install -g npm@16.0.0**
 
 ## Docker Image Tag Naming
 

@@ -18,4 +18,20 @@
 
 ## Git Workflow
 
-> Here,
+> To not corrupt the main branch,one creates a new branch or features or bug fixes, and we merge these branches into the main branch when ready.
+> Git workflow allows us keep track with the feature versioning.
+
+## Successful Running and Debugging
+
+> I trace the bugs and their solution with git commits. 
+> To ensure successful running, I regularly test my Docker Compose setup on local environments before deploying it to production.
+> The major bug was running the package.json to pick a lower version of the node module, to resolve this I created a new image and adjusted the dockerfile to run the package.json adding commands like; 
+>COPY package*.json ./
+
+> RUN npm ci
+
+> RUN npm install -g npm@16.0.0
+
+## Docker Image Tag Naming
+
+> I have used the naming convention to be first, ip-clientv1.0.0 but on the final image it reads frontend-ip2v1.0.1 - this convention is because it is a bug tagging that is why I have not written it as v2.0.0

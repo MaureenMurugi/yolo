@@ -2,8 +2,8 @@ version: '3'
 
 services:
   client:
-    build: ./client
-    # image: murugi/ip-client:1.0.0
+    # build: ./client
+    image: murugi/frontend-ip2:v1.0.1
     container_name: react-cloth
     ports:
       - "3000:3000"

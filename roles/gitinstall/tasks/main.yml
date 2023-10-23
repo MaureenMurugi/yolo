@@ -1,0 +1,18 @@
+---
+# tasks file for /home/maureen/DevOps/yolo/roles/gitinstall
+- name: Clone Yolo from GitHub
+  git:
+        repo: https://github.com/MaureenMurugi/yolo
+        dest: ~/DevOps/yolo
+        update: yes
+
+- name: Set the working directory to the cloned folder
+  command: cd /home/Documents/AdhoIP3/yolo
+  args:
+        chdir: /DevOps/yolo
+        creates: /DevOps/yolo
+
+- name: Run Docker Compose
+  command: docker-compose up -d
+  args:
+    chdir: /DevOps/yolo  # Change the working directory to the cloned folder

@@ -12,6 +12,9 @@
         chdir: ~/DevOps/yolo
         creates: ~/DevOps/yolo
 
+- name: add userpermissions
+  shell: "usermod -aG docker vagrant"
+
 - name: Run Docker Compose
   command: docker compose up 
   args:

@@ -26,3 +26,10 @@
       shell:  "usermod -aG docker {{ default_user_name }}"
   tags:
     - docker_permissions
+
+    - name: Install Docker Compose
+      apt:
+        name: docker-compose
+        state: present
+  tags:
+    - docker_compose_install

@@ -2,4 +2,4 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - /home/maureen/DevOps/yolo/roles/gitinstall
+    - /home/maureen/DevOps/yolo/roles/gitclone

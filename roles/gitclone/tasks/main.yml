@@ -7,12 +7,12 @@
         update: yes
 
 - name: Set the working directory to the cloned folder
-  command: cd /home/Documents/AdhoIP3/yolo
+  command: cd ~/DevOps/yolo
   args:
-        chdir: /DevOps/yolo
-        creates: /DevOps/yolo
+        chdir: ~/DevOps/yolo
+        creates: ~/DevOps/yolo
 
 - name: Run Docker Compose
-  command: docker-compose up -d
+  command: docker compose up 
   args:
-    chdir: /DevOps/yolo
+    chdir: ~/DevOps/yolo

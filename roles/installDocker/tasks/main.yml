@@ -1,45 +1,28 @@
 ---
 # tasks file for /home/maureen/DevOps/yolo/roles/installDocker
-- name: Add Docker GPG apt Key
-  ansible.builtin.apt_key:
-    url: https://download.docker.com/linux/ubuntu/gpg
-    state: present
-
-- name: Add repository into sources list
-  ansible.builtin.apt_repository:
-    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_lsb.codename }} stable
-    state: present
-    filename: docker
-
-
-- name: Install Docker 
-  ansible.builtin.apt:
-    name:
-      - docker-ce
-      - docker-ce-cli
-      - containerd.io
-    state: present
-    update_cache: true
-
-- name: Setup docker user
-  ansible.builtin.user:
-    name: docker
-    groups: "docker"
-    append: true
-    state: present
-
-- name: Install Docker module for Python
-  ansible.builtin.pip:
-    name: docker
-
-
-- name: Install Docker Compose
-  ansible.builtin.pip:
-    name: docker-compose
-    state: present
+- block:
+    - name: Install prerequisites
+      apt:
+        name: "{{ pre_requisites }}"
     
-- name: Restart Docker
-  ansible.builtin.service:
-    name: docker
-    state: restarted
-    enabled: true
+    - name: Add Docker's official GPG-Key
+      apt_key:
+        url: "{{ docker_gpg_url }}"
+
+    - name: Add Docker repository
+      apt_repository:
+        repo: "{{ docker_repo }}"
+
+    - name: Install Docker
+      apt:
+        name: "{{ docker_packages }}"
+        update_cache: yes 
+  tags:
+    - docker_setup
+
+
+- block:
+    - name: Add user permissions to Docker group
+      shell:  "usermod -aG docker {{ default_user_name }}"
+  tags:
+    - docker_permissions

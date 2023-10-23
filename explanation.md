@@ -36,3 +36,27 @@
 ## Docker Image Tag Naming
 
 > I have used the naming convention to be first, ip-clientv1.0.0 but on the final image it reads frontend-ip2v1.0.1 - this convention is because it is a bug tagging that is why I have not written it as v2.0.0
+
+## Set up the environment by provisioning a vagrant virtual machine 
+
+> The vagrant virtual machine that is used in the project is geerlingguy/ubuntu2004.
+> I have used vagrant to provision the ansible playbooks, which in turn, install docker, clone the project from github.
+> The command to run the vagrant is ```vagrant up ```
+
+## Ansible Roles
+
+> Since ansible roles are re-usable, I have implemented them in gitinstall and install docker.
+> Within the git install folder, I have created tasks for cloning the git project.
+> For the installdocker folder, I have created tasks for installation and written the variables in the vars folder.
+
+## Ansible Playbook
+
+> To automate the process, I have the playbook.yml, that runs the above roles.
+> Since roles are sudo processed, the commands in the playbooks access the permissions to the roles folder.
+
+## Test-Run
+> To run the application; ```docker compose up```
+> Run ```docker ps -a``` to verify the running cntainers
+> 
+> Run ```vagrant provision``` to execute the playbook and run the vm
+> ```vagrant ssh ```into the vagrant

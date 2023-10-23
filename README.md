@@ -32,6 +32,14 @@
 
 > ```cd backend``` + ```npm install``` + ```npm start```
 
+**To run the containers**
+
+>  ```docker compose up``` +  ```docker ps -a```
+
+**To run the VM**
+
+>  ```vagrant provision``` + ```vagrant ssh```
+
 ## Technologies used
 
 1. ReactJS
@@ -39,6 +47,8 @@
 3. ExpressJS
 4. MongoDB
 5. Docker
+6. Ansible
+7. Vagrant
 
 ## License
 

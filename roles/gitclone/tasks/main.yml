@@ -15,7 +15,13 @@
 - name: add userpermissions
   shell: "usermod -aG docker vagrant"
 
-- name: Run Docker Compose
-  command: docker compose up 
-  args:
-    chdir: ~/DevOps/yolo
+# - name: Run Docker Compose
+#   command: docker compose up 
+#   args:
+#     chdir: ~/DevOps/yolo
+
+- name: Create and start services
+  community.docker.docker_compose:
+    project_src: ~/DevOps/yolo
+  register: output
+  

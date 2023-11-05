@@ -17,6 +17,13 @@ spec:
           image: murugi/frontend-ip2:v1.0.1
           ports:
             - containerPort: 3000
+          resources:
+            limits:
+              memory: "256Mi"  # Limit the memory to 256 MiB
+              cpu: "0.5"       # Limit the CPU to 0.5 cores
+            requests:
+              memory: "128Mi"  # Request 128 MiB of memory
+              cpu: "0.25"      
 ---
 apiVersion: v1
 kind: Service
@@ -29,4 +36,4 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 3000
-  type: LoadBalancer  
+  type: LoadBalancer

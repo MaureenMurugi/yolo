@@ -1,3 +1,5 @@
+---
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -13,7 +15,7 @@ spec:
         app: backend
     spec:
       containers:
-        - name: backend-container
+        - name: node-api
           image: murugi/ip-backend:1.0.0
           ports:
             - containerPort: 5000

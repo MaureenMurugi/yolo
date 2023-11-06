@@ -13,17 +13,26 @@ spec:
         app: client
     spec:
       containers:
-        - name: client-container
+        - name: react-cloth
           image: murugi/frontend-ip2:v1.0.1
+          resources:
+           requests:
+              memory: "64Mi"
+              cpu: "250m"
+          limits:
+              memory: "128Mi"
+              cpu: "500m"
+        - name: log-aggregator
+          image: images.my-company.example/log-aggregator:v6
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
           ports:
             - containerPort: 3000
-          resources:
-            limits:
-              memory: "256Mi"  # Limit the memory to 256 MiB
-              cpu: "0.5"       # Limit the CPU to 0.5 cores
-            requests:
-              memory: "128Mi"  # Request 128 MiB of memory
-              cpu: "0.25"      
 ---
 apiVersion: v1
 kind: Service
@@ -36,4 +45,4 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 3000
-  type: LoadBalancer
+  type: LoadBalancer  

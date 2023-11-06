@@ -2,12 +2,13 @@ FROM node:16-alpine
 
 WORKDIR /app
 
+# Copy both package.json and package-lock.json to the container
 COPY package*.json ./
 
-RUN npm ci
+# Install dependencies based on the package-lock.json
+RUN npm install
 
-RUN npm install -g npm@16.0.0
-
+# Copy the rest of your application files
 COPY . .
 
 EXPOSE 3000

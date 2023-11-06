@@ -23,7 +23,7 @@ spec:
               memory: "128Mi"
               cpu: "500m"
         - name: log-aggregator
-          image: images.my-company.example/log-aggregator:v6
+          image: murugi/frontend-ip2:v1.0.1/log-aggregator:v6
           resources:
             requests:
               memory: "64Mi"

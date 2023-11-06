@@ -1,21 +1,55 @@
 ---
 
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: database-deployment
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: database
+  serviceName: mongo-service
+  replicas: 2
   template:
     metadata:
       labels:
         app: database
     spec:
       containers:
-        - name: mongo-db
-          image: mongo
-          ports:
-            - containerPort: 27017
+      - name: mongo-db
+        image: mongo
+        ports:
+        - containerPort: 27017
+          name: web
+        volumeMounts:
+        - name: mongo-data
+          mountPath: /DevOps/mongo-backup:/data/db
+  volumeClaimTemplates:
+  - metadata:
+      name: claim-mongo
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
+
+
+# apiVersion: apps/v1
+# kind: Stat
+# metadata:
+#   name: database-deployment
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: database
+#   template:
+#     metadata:
+#       labels:
+#         app: database
+#     spec:
+#       containers:
+#         - name: mongo-db
+#           image: mongo
+#       ports:
+#         - containerPort: 27017
